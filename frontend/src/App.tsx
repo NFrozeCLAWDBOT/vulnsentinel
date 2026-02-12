@@ -1,29 +1,29 @@
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
+import { useStats } from "@/hooks/useApi";
+import { HeroSection } from "@/components/HeroSection";
+import { DashboardSection } from "@/components/DashboardSection";
+import { CveTableSection } from "@/components/CveTableSection";
+import { Footer } from "@/components/Footer";
 
 function App() {
+  const { stats, loading } = useStats();
+  const [searchQuery, setSearchQuery] = useState<string | undefined>();
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query || undefined);
+    if (query) {
+      document.getElementById("cve-table")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-bg-deep text-text-primary">
-      <div className="flex flex-col items-center justify-center min-h-screen gap-6">
-        <h1 className="font-heading text-4xl font-bold tracking-tight text-peak-lum">
-          VulnSentinel
-        </h1>
-        <p className="font-body text-text-secondary text-lg">
-          Vulnerability intelligence. Actionable in seconds.
-        </p>
-        <div className="flex gap-3">
-          <Button>Primary Action</Button>
-          <Badge variant="destructive">Critical</Badge>
-          <Badge className="bg-amber text-bg-deep">KEV</Badge>
-        </div>
-        <div className="glass rounded-2xl p-8 max-w-md text-center">
-          <p className="text-text-secondary">
-            Glassmorphic panel test — scaffold verified.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-bg-deep">
+      <HeroSection stats={stats} loading={loading} onSearch={handleSearch} />
+      <DashboardSection stats={stats} loading={loading} />
+      <CveTableSection stats={stats} initialSearch={searchQuery} />
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
