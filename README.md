@@ -1,5 +1,7 @@
 # VulnSentinel
 
+**Live:** [vulnsentinel.nfroze.co.uk](https://vulnsentinel.nfroze.co.uk)
+
 A vulnerability intelligence dashboard that fuses NVD and CISA KEV feeds into a single visual triage interface — turning two government JSON feeds into actionable threat context in seconds.
 
 ## Overview
@@ -39,6 +41,10 @@ The React frontend is statically hosted on S3 with Cloudflare DNS providing SSL 
 - **Server-side stats aggregation over client-side computation:** The `/api/stats` endpoint computes all dashboard metrics in a single Lambda invocation rather than shipping raw data to the browser. This keeps the frontend response under 2KB regardless of how many CVEs are in the database.
 
 - **S3 + Cloudflare over CloudFront:** Cloudflare's proxied CNAME provides free SSL termination and caching without the configuration overhead or cost of a CloudFront distribution. Monthly hosting cost stays under $3.
+
+## Screenshots
+
+![Live](screenshots/vulnsentinel.jpg)
 
 ## Built By
 
