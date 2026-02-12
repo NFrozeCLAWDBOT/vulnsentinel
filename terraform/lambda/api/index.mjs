@@ -187,7 +187,10 @@ async function handleGetCveDetail(cveId) {
 }
 
 async function handleGetStats() {
-  const allItems = await scanAll({ TableName: TABLE_NAME });
+  const allItems = await scanAll({
+    TableName: TABLE_NAME,
+    ProjectionExpression: "cveId, isKev, kevDateAdded, knownRansomware, cvssSeverity, vendor, cweId",
+  });
 
   const totalCves = allItems.length;
   let totalKev = 0;
