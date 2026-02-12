@@ -91,7 +91,7 @@ resource "aws_lambda_function" "api" {
   runtime          = "nodejs20.x"
   role             = aws_iam_role.lambda_role.arn
   timeout          = 30
-  memory_size      = 256
+  memory_size      = 1024
 
   environment {
     variables = {
