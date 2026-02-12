@@ -1,0 +1,9 @@
+CLAUDE.md
+*.mp4
+node_modules/
+dist/
+.terraform/
+*.tfstate*
+.env
+terraform/lambda/*.zip
+.terraform.lock.hcl
